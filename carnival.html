@@ -117,10 +117,6 @@
             color: #b8e6ff;
         }
 
-        .features {
-            margin-top: 40px;
-        }
-
         .feature-item {
             font-size: 17px;
             margin: 15px 0;
@@ -164,12 +160,6 @@
             text-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
         }
 
-        .form-header p {
-            color: #8ab4d5;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
         .form-group {
             margin-bottom: 25px;
         }
@@ -180,11 +170,6 @@
             color: #b8e6ff;
             font-weight: 500;
             font-size: 14px;
-        }
-
-        label .required {
-            color: #00ffff;
-            margin-left: 3px;
         }
 
         input[type="text"],
@@ -316,27 +301,6 @@
             display: block;
         }
 
-        .info-text {
-            font-size: 12px;
-            color: #6a9ec2;
-            margin-top: 5px;
-        }
-
-        .section-divider {
-            border-top: 2px solid rgba(0, 255, 255, 0.2);
-            margin: 30px 0;
-            padding-top: 30px;
-        }
-
-        .section-title {
-            color: #00ffff;
-            font-size: 20px;
-            margin-bottom: 20px;
-            font-weight: 600;
-            text-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
-            text-align: center;
-        }
-
         @media (max-width: 968px) {
             .main-container {
                 flex-direction: column;
@@ -385,7 +349,6 @@
 <body>
 <div class="main-container">
 
-    <!-- LEFT -->
     <div class="left-panel">
         <div class="welcome-content">
             <h1>Join the</h1>
@@ -399,19 +362,18 @@
         </div>
     </div>
 
-    <!-- RIGHT PANEL -->
     <div class="right-panel">
-        <div class="form-header" style="text-align:center;color:white;margin-bottom:30px;">
+        <div class="form-header">
             <h2>EVENT REGISTRATION</h2>
-            <h3 style="color:#00ffff;">CHRIS TECH 2026</h3>
+            <h3>CHRIS TECH 2026</h3>
         </div>
 
         <form id="eventForm">
 
-            <!-- TIMESLOT SELECTION - MOVED TO TOP -->
+            <!-- TIME SLOT SELECTION - User selects their preferred slot -->
             <div class="form-group">
                 <label>Select Time Slot *</label>
-                <select id="timeslot" name="timeslot" required>
+                <select id="event_time" name="event_time" required>
                     <option value="">Choose your preferred time slot</option>
                     <option value="9:00 AM - 10:00 AM">9:00 AM - 10:00 AM</option>
                     <option value="2:00 PM - 3:00 PM">2:00 PM - 3:00 PM</option>
@@ -470,34 +432,20 @@
     </div>
 </div>
 
-
-<!-- ========================= JS SECTION ========================= -->
 <script>
-
-    /* ---------------------------------------------------------
-       🔥 CHANGE ONLY HERE FOR EVERY EVENT PAGE (1 place only)
-    --------------------------------------------------------- */
+    /* 🔥 CHANGE ONLY HERE FOR EVERY EVENT PAGE */
     const EVENT_DETAILS = {
-    name: "Carnival Quiz",
-    location: "Room 16",
-    date: "30-01-2026"
-};
+        name: "Carnival Quiz",
+        location: "Room 16",
+        date: "30-01-2026"
+    };
 
-
-
-
-
-
-
-    /* ---------------------------------------------------------
-       Auto fill event details + placeholders
-    --------------------------------------------------------- */
+    /* Auto fill event details */
     function fillEventDetails() {
         document.getElementById("event_name").value = EVENT_DETAILS.name;
         document.getElementById("event_location").value = EVENT_DETAILS.location;
         document.getElementById("event_date").value = EVENT_DETAILS.date;
 
-        // placeholders also updated
         document.getElementById("event_name").placeholder = EVENT_DETAILS.name;
         document.getElementById("event_location").placeholder = EVENT_DETAILS.location;
         document.getElementById("event_date").placeholder = EVENT_DETAILS.date;
@@ -505,10 +453,7 @@
 
     window.onload = fillEventDetails;
 
-
-    /* ---------------------------------------------------------
-       Form Submit Handler
-    --------------------------------------------------------- */
+    /* Form Submit Handler */
     const form = document.getElementById("eventForm");
     const submitBtn = document.getElementById("submitBtn");
     const loading = document.getElementById("loading");
@@ -543,24 +488,18 @@
         }
 
         form.reset();
-        fillEventDetails(); // restore event details automatically
+        fillEventDetails();
 
         submitBtn.disabled = false;
         loading.classList.remove("active");
     });
 
-
-    /* ---------------------------------------------------------
-       Show Message
-    --------------------------------------------------------- */
     function showMessage(text, type) {
         message.textContent = text;
         message.className = "message active " + type;
         setTimeout(() => message.classList.remove("active"), 6000);
     }
-
 </script>
 
 </body>
-
 </html>
