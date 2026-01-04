@@ -192,6 +192,7 @@
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2300ffff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 15px center;
+            background-color: rgba(15, 25, 45, 0.8);
             padding-right: 40px;
         }
 
@@ -349,6 +350,7 @@
 <body>
 <div class="main-container">
 
+    <!-- LEFT PANEL -->
     <div class="left-panel">
         <div class="welcome-content">
             <h1>Join the</h1>
@@ -362,6 +364,7 @@
         </div>
     </div>
 
+    <!-- RIGHT PANEL -->
     <div class="right-panel">
         <div class="form-header">
             <h2>EVENT REGISTRATION</h2>
@@ -370,7 +373,7 @@
 
         <form id="eventForm">
 
-            <!-- TIME SLOT SELECTION - User selects their preferred slot -->
+            <!-- TIME SLOT SELECTION - MOVED TO TOP -->
             <div class="form-group">
                 <label>Select Time Slot *</label>
                 <select id="event_time" name="event_time" required>
@@ -432,20 +435,29 @@
     </div>
 </div>
 
+
+<!-- ========================= JAVASCRIPT SECTION ========================= -->
 <script>
-    /* 🔥 CHANGE ONLY HERE FOR EVERY EVENT PAGE */
+
+    /* ---------------------------------------------------------
+       🔥 CHANGE ONLY HERE FOR EVERY EVENT PAGE (1 place only)
+       --------------------------------------------------------- */
     const EVENT_DETAILS = {
         name: "Carnival Quiz",
         location: "Room 16",
         date: "30-01-2026"
     };
 
-    /* Auto fill event details */
+
+    /* ---------------------------------------------------------
+       Auto fill event details + placeholders
+       --------------------------------------------------------- */
     function fillEventDetails() {
         document.getElementById("event_name").value = EVENT_DETAILS.name;
         document.getElementById("event_location").value = EVENT_DETAILS.location;
         document.getElementById("event_date").value = EVENT_DETAILS.date;
 
+        // placeholders also updated
         document.getElementById("event_name").placeholder = EVENT_DETAILS.name;
         document.getElementById("event_location").placeholder = EVENT_DETAILS.location;
         document.getElementById("event_date").placeholder = EVENT_DETAILS.date;
@@ -453,7 +465,10 @@
 
     window.onload = fillEventDetails;
 
-    /* Form Submit Handler */
+
+    /* ---------------------------------------------------------
+       Form Submit Handler
+       --------------------------------------------------------- */
     const form = document.getElementById("eventForm");
     const submitBtn = document.getElementById("submitBtn");
     const loading = document.getElementById("loading");
@@ -488,17 +503,22 @@
         }
 
         form.reset();
-        fillEventDetails();
+        fillEventDetails(); // restore event details automatically
 
         submitBtn.disabled = false;
         loading.classList.remove("active");
     });
 
+
+    /* ---------------------------------------------------------
+       Show Message
+       --------------------------------------------------------- */
     function showMessage(text, type) {
         message.textContent = text;
         message.className = "message active " + type;
         setTimeout(() => message.classList.remove("active"), 6000);
     }
+
 </script>
 
 </body>
